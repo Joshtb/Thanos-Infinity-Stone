@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Thanos Fighter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+ <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+ <script src="game.js"> </script>
+</head>
+
+<body>
+    <div class="game">
+            <nav class="navbar navbar-light bg-warning">
+                    <span class="navbar-brand mb-0 h1" style="height:50px;">Infinity Stone Collector</span>
+                  </nav>
+                  <div class="jumbotron bg-danger">
+        <h2 class="text-light">Click the Infinity Stones to defeat Thanos! If you go over Thanos's number, you die!</h2>
+        
+       
+        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="http://assets.boundingintocomics.com/content/uploads/2018/02/Thanos-13.png" alt="Card image cap">
+                <div class="card-body bg-primary">
+                  <h5 class="card-title">Thanos Number</h5>
+                  <p class="card-text" id="randomNumberGenerator"></p>
+  
+                </div>
+              </div>
+            
+         
+              <div class="card" style="width: 18rem;">
+                    <div class="card-body bg-primary">
+                      <h3 class="card-text text-light" id="userGuess"> </h3>
+                      <p class="card-text text-light"> Wins</p>
+                      <p class="card-text text-light" id="wins"></p>
+                      <p class="card-text text-light"> Losses</p>
+                      <p class="card-text text-light" id="losses"></p>
+                    </div>
+                  </div>
+               
+        <div class="crystalDiv col-8" style="left:400px; bottom:370px;">
+                <div class="card w-75 bg-info">
+                        <div class="card-body">
+                          <h5 class="card-title">Stone</h5>
+                         
+                          <button type="button" class="btn btn-info btn-lg imgButton1" >
+                          <img src="data:image/jpeg;base64,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" style="height:200px; width:180px;" id="spaceStone" class="imgStone">
+                        </button>
+                        <button type="button" class="btn btn-info btn-lg imgButton2" >
+
+                          <img src="https://img4.goodfon.ru/wallpaper/big/4/58/infinity-war-infinity-stone-infinity-gem-marvel-time-stone-t.jpg" style="height:200px; width:180px;" id="timeStone" class="imgStone">
+                          </button>
+                          <button type="button" class="btn btn-info btn-lg imgButton3">
+            <img src="https://78.media.tumblr.com/667bd1acec86b79ededa147c4c38c438/tumblr_p52y3gjVhr1tctq75o5_400.png" style="height:200px; width:180px;" id="powerStone" class="imgStone">
+            </button>
+            <button type="button" class="btn btn-info btn-lg imgButton4">
+            <img src="https://i.pinimg.com/originals/2b/96/71/2b96719ccff30d63fb2e2c9ca1794f9d.jpg" style="height:200px; width:180px;" id="realityStone" class="imgStone">
+                </button>
+               
+          </div>
+          
+        </div>
+        </div>
+
+
+    </div>
+   
+</body>
+
+</html>
