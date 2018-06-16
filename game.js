@@ -20,45 +20,67 @@ var targetNumber= thanosNumber[[Math.floor(Math.random() * thanosNumber.length)]
 
 //randomnumber for stones
 $(document).ready(function(){
-        $("#randomNumberGenerator").append(targetNumber);
+        $("#randomNumberGenerator").html(targetNumber);
      
 
 $("#spaceStone").click(function(){
 
-   $("#userGuess").append(newStone1);
+        counter = counter + newStone1;
+   $("#userGuess").html(counter);
+   checkScore();
 
-  
+   
 });
 $("#timeStone").click(function(){
-
-    $("#userGuess").append(newStone2);
-    
+    counter = counter + newStone2;
+    $("#userGuess").html(counter);
+    checkScore();
 });
 
 $("#powerStone").click(function(){
-  
-    $("#userGuess").append(newStone3);
-  
+    counter = counter + newStone3;
+    $("#userGuess").html(counter);
+    checkScore();
 });
 $("#realityStone").click(function(){
-  
-    $("#userGuess").append(newStone4);
-    
+    counter = counter + newStone4;
+    $("#userGuess").html(counter);
+    checkScore();
 });
-    // $(function() {
-    // $("#spaceStone, #timeStone, #powerStone, #realityStone").on("click", sum);
-	// function sum() {
-	// $("#userGuess").val(Number($("#spaceStone").val()) + Number($("#timeStone").val()) + Number($("#powerStone").val()) + Number($("#realityStone").val()))
-       
-    // }
-    // }
-//  function valueadd(){
-    //  var value = newStone1 + newStone2 + newStone3 + newStone4
-    //  $("#userGuess").append(value)
-//  }
+
 
 });
-// if(userGuess === targetNumber){
+function checkScore(){
+if (counter > targetNumber){
+    alert("YOU LOSE.You've been defeated by Thanos! Click to try again!")  
+losses++;
+$("#losses").html(losses);
+reset();
+} else if( targetNumber < counter) {
+
+} else if (counter === targetNumber){
+
+    wins++;
+    alert(" YOU WIN!!!!You have defeated Thanos! Fight Again!")
+    $("#wins").html(wins);
+    reset();
+}
+}
+
+function reset(){
+     counter=0;
+ newStone1= stoneNumberArr[[Math.floor(Math.random() * stoneNumberArr.length)]];
+ newStone2= stoneNumberArr[[Math.floor(Math.random() * stoneNumberArr.length)]];
+ newStone3= stoneNumberArr[[Math.floor(Math.random() * stoneNumberArr.length)]];
+ newStone4= stoneNumberArr[[Math.floor(Math.random() * stoneNumberArr.length)]];
+ targetNumber= thanosNumber[[Math.floor(Math.random() * thanosNumber.length)]];
+ $("#randomNumberGenerator").html(targetNumber);
+$("#userGuess").html(counter);
+
+
+}
+
+// if(targetNumber = counter){
 //     wins++;
 //     alert("youve beaten thanos, go again!");
 // }else{
